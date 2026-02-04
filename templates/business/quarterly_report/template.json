@@ -1,0 +1,104 @@
+{
+  "id": "quarterly_report",
+  "version": "1.0.0",
+
+  "metadata": {
+    "name": "Quarterly Report",
+    "name_ko": "분기 보고서",
+    "category": "business",
+    "author": "NanumSlide Team",
+    "license": "MIT"
+  },
+
+  "design": {
+    "aspect_ratio": "16:9",
+    "base_width": 1920,
+    "base_height": 1080,
+
+    "color_schemes": {
+      "corporate": {
+        "primary": "#0f4c81",
+        "secondary": "#1e6eb8",
+        "accent": "#3498db",
+        "background": "#ffffff",
+        "text": "#2c3e50",
+        "text_light": "#7f8c8d"
+      },
+      "minimal": {
+        "primary": "#34495e",
+        "secondary": "#5d6d7e",
+        "accent": "#85929e",
+        "background": "#f8f9fa",
+        "text": "#2c3e50",
+        "text_light": "#95a5a6"
+      }
+    },
+
+    "typography": {
+      "heading_font": "Pretendard",
+      "body_font": "Pretendard",
+      "sizes": {
+        "title": 48,
+        "heading1": 40,
+        "heading2": 32,
+        "body": 22,
+        "caption": 16
+      },
+      "weights": {
+        "title": 700,
+        "heading": 600,
+        "body": 400
+      }
+    },
+
+    "spacing": {
+      "margin": 60,
+      "padding": 40,
+      "gap": 24
+    }
+  },
+
+  "structure": {
+    "recommended_slides": [
+      {"type": "title", "required": true, "name": "표지"},
+      {"type": "agenda", "required": false, "name": "목차"},
+      {"type": "executive_summary", "required": true, "name": "요약"},
+      {"type": "kpi_overview", "required": true, "name": "KPI 개요"},
+      {"type": "financial_highlights", "required": true, "name": "재무 하이라이트"},
+      {"type": "revenue_breakdown", "required": false, "name": "매출 분석"},
+      {"type": "operational_metrics", "required": false, "name": "운영 지표"},
+      {"type": "achievements", "required": true, "name": "주요 성과"},
+      {"type": "challenges", "required": false, "name": "과제 및 리스크"},
+      {"type": "next_quarter", "required": true, "name": "다음 분기 계획"},
+      {"type": "appendix", "required": false, "name": "부록"}
+    ],
+    "min_slides": 8,
+    "max_slides": 20,
+    "optimal_slides": 15
+  },
+
+  "layouts": {
+    "title": {
+      "default": "centered_title",
+      "variants": ["centered_title", "left_aligned_title"]
+    },
+    "kpi_overview": {
+      "default": "four_kpi_grid",
+      "variants": ["four_kpi_grid", "six_kpi_grid", "kpi_with_chart"]
+    },
+    "financial_highlights": {
+      "default": "chart_with_highlights",
+      "variants": ["chart_focused", "table_view", "comparison_view"]
+    },
+    "achievements": {
+      "default": "timeline",
+      "variants": ["bullet_points", "icon_grid", "milestone_view"]
+    }
+  },
+
+  "assets": {
+    "master_pptx": "master.pptx",
+    "thumbnail": "thumbnail.png",
+    "icons": ["chart-line", "chart-bar", "chart-pie", "arrow-up", "arrow-down", "target"]
+  }
+}

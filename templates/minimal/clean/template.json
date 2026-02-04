@@ -1,0 +1,100 @@
+{
+  "id": "clean",
+  "version": "1.0.0",
+
+  "metadata": {
+    "name": "Clean Minimal",
+    "name_ko": "클린 미니멀",
+    "category": "minimal",
+    "author": "NanumSlide Team",
+    "license": "MIT"
+  },
+
+  "design": {
+    "aspect_ratio": "16:9",
+    "base_width": 1920,
+    "base_height": 1080,
+
+    "color_schemes": {
+      "monochrome": {
+        "primary": "#1a202c",
+        "secondary": "#2d3748",
+        "accent": "#4a5568",
+        "background": "#ffffff",
+        "text": "#1a202c",
+        "text_light": "#718096"
+      },
+      "minimal": {
+        "primary": "#374151",
+        "secondary": "#4b5563",
+        "accent": "#6b7280",
+        "background": "#f9fafb",
+        "text": "#111827",
+        "text_light": "#6b7280"
+      },
+      "dark": {
+        "primary": "#60a5fa",
+        "secondary": "#3b82f6",
+        "accent": "#93c5fd",
+        "background": "#0f172a",
+        "text": "#f1f5f9",
+        "text_light": "#94a3b8"
+      }
+    },
+
+    "typography": {
+      "heading_font": "Pretendard",
+      "body_font": "Pretendard",
+      "sizes": {
+        "title": 48,
+        "heading1": 40,
+        "heading2": 32,
+        "body": 22,
+        "caption": 16
+      },
+      "weights": {
+        "title": 600,
+        "heading": 500,
+        "body": 400
+      }
+    },
+
+    "spacing": {
+      "margin": 80,
+      "padding": 48,
+      "gap": 32
+    }
+  },
+
+  "structure": {
+    "recommended_slides": [
+      {"type": "title", "required": true, "name": "표지"},
+      {"type": "agenda", "required": false, "name": "목차"},
+      {"type": "content", "required": true, "name": "내용"},
+      {"type": "conclusion", "required": true, "name": "결론"}
+    ],
+    "min_slides": 3,
+    "max_slides": 30,
+    "optimal_slides": 10
+  },
+
+  "layouts": {
+    "title": {
+      "default": "centered_title",
+      "variants": ["centered_title", "left_aligned_title"]
+    },
+    "content": {
+      "default": "single_column",
+      "variants": ["single_column", "two_column", "bullet_points"]
+    },
+    "conclusion": {
+      "default": "centered_title",
+      "variants": ["centered_title", "contact"]
+    }
+  },
+
+  "assets": {
+    "master_pptx": "master.pptx",
+    "thumbnail": "thumbnail.png"
+  }
+}

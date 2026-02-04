@@ -23,6 +23,7 @@ from src.ui.slide_editor import SlideEditor
 from src.ui.widgets.slide_thumbnail import SlideThumbnailList
 from src.ui.widgets.prompt_panel import PromptPanel
 from src.ui.dialogs.settings_dialog import SettingsDialog
+from src.ui.dialogs.agent_progress import AgentProgressDialog, AgentState, AgentStatus, create_generation_progress_dialog
 from src.ui.ui_theme import get_ui_theme_manager
 from src.services.generation_worker import MockGenerationWorker, GenerationWorker
 from src.core.export.pptx_exporter import export_to_pptx
@@ -43,6 +44,8 @@ class MainWindow(QMainWindow):
         self.current_file_path: Optional[str] = None
         self.generation_worker: Optional[GenerationWorker] = None
         self.current_theme: Optional[Theme] = None
+        self.progress_dialog: Optional[AgentProgressDialog] = None
+        self.use_multi_agent: bool = True  # Multi-Agent 시스템 사용 여부
 
         self._setup_ui()
         self._setup_menubar()
@@ -188,6 +191,15 @@ class MainWindow(QMainWindow):
         generate_action.setShortcut(QKeySequence("Ctrl+G"))
         generate_action.triggered.connect(self._show_generation_dialog)
         ai_menu.addAction(generate_action)
+
+        ai_menu.addSeparator()
+
+        # Multi-Agent 시스템 토글
+        self.multi_agent_action = QAction("Multi-Agent 시스템 사용(&M)", self)
+        self.multi_agent_action.setCheckable(True)
+        self.multi_agent_action.setChecked(True)
+        self.multi_agent_action.triggered.connect(self._toggle_multi_agent)
+        ai_menu.addAction(self.multi_agent_action)
 
         ai_menu.addSeparator()
 
@@ -482,6 +494,14 @@ class MainWindow(QMainWindow):
         self.generation_worker.finished.connect(self._on_generation_finished)
         self.generation_worker.error.connect(self._on_generation_error)
 
+        # Multi-Agent Progress Dialog 표시
+        if self.use_multi_agent:
+            self.progress_dialog = create_generation_progress_dialog(self)
+            self.progress_dialog.cancelled.connect(self._on_generation_cancelled)
+            self.progress_dialog.show()
+            self.progress_dialog.add_log("프레젠테이션 생성을 시작합니다...", "info")
+            self.progress_dialog.set_agent_status("research", AgentStatus.RUNNING, 0.0, "준비 중...")
+
         # 워커 시작
         self.generation_worker.start()
 
@@ -490,12 +510,39 @@ class MainWindow(QMainWindow):
         if self.generation_worker:
             self.generation_worker.cancel()
             self.generation_worker = None
+
+        if self.progress_dialog:
+            self.progress_dialog.add_log("사용자에 의해 취소됨", "warning")
+            self.progress_dialog.close()
+            self.progress_dialog = None
+
         self.status_label.setText("생성 취소됨")
 
     def _on_generation_progress(self, message: str, percent: int):
         """생성 진행률 처리"""
         self.status_label.setText(message)
         self.prompt_panel.set_progress(message, percent)
+
+        # Agent Progress Dialog 업데이트
+        if self.progress_dialog and self.use_multi_agent:
+            # 에이전트별 진행상황 업데이트 (메시지 기반)
+            if "연구" in message or "리서치" in message or "검색" in message:
+                self.progress_dialog.set_agent_status("research", AgentStatus.RUNNING, percent / 100, message)
+            elif "콘텐츠" in message or "내용" in message or "구조" in message:
+                self.progress_dialog.set_agent_status("research", AgentStatus.COMPLETED, 1.0)
+                self.progress_dialog.set_agent_status("content", AgentStatus.RUNNING, percent / 100, message)
+            elif "디자인" in message or "레이아웃" in message:
+                self.progress_dialog.set_agent_status("content", AgentStatus.COMPLETED, 1.0)
+                self.progress_dialog.set_agent_status("design", AgentStatus.RUNNING, percent / 100, message)
+            elif "이미지" in message or "사진" in message:
+                self.progress_dialog.set_agent_status("design", AgentStatus.COMPLETED, 1.0)
+                self.progress_dialog.set_agent_status("image", AgentStatus.RUNNING, percent / 100, message)
+            elif "검토" in message or "리뷰" in message or "완료" in message:
+                self.progress_dialog.set_agent_status("image", AgentStatus.COMPLETED, 1.0)
+                self.progress_dialog.set_agent_status("review", AgentStatus.RUNNING, percent / 100, message)
+
+            self.progress_dialog.set_overall_progress(percent / 100, message)
+            self.progress_dialog.add_log(message)
 
     def _on_generation_finished(self, presentation: Presentation):
         """생성 완료 처리"""
@@ -505,11 +552,24 @@ class MainWindow(QMainWindow):
         self.status_label.setText(f"생성 완료: {presentation.slide_count}개 슬라이드")
         self.generation_worker = None
 
+        # Progress Dialog 완료 처리
+        if self.progress_dialog:
+            self.progress_dialog.set_agent_status("review", AgentStatus.COMPLETED, 1.0, "완료")
+            self.progress_dialog.set_completed(success=True)
+            self.progress_dialog.add_log(f"프레젠테이션 생성 완료! ({presentation.slide_count}개 슬라이드)", "success")
+
     def _on_generation_error(self, error_message: str):
         """생성 오류 처리"""
         self.prompt_panel.generation_complete()
         self.status_label.setText("생성 실패")
-        QMessageBox.critical(self, "생성 오류", f"프레젠테이션 생성 실패:\n{error_message}")
+
+        # Progress Dialog 오류 처리
+        if self.progress_dialog:
+            self.progress_dialog.set_completed(success=False)
+            self.progress_dialog.add_log(f"오류 발생: {error_message}", "error")
+        else:
+            QMessageBox.critical(self, "생성 오류", f"프레젠테이션 생성 실패:\n{error_message}")
+
         self.generation_worker = None
 
     def _load_presentation_to_ui(self):
@@ -542,6 +602,14 @@ class MainWindow(QMainWindow):
     def _show_generation_dialog(self):
         """AI 생성 다이얼로그 표시"""
         self.prompt_panel.focus_prompt_input()
+
+    def _toggle_multi_agent(self, checked: bool):
+        """Multi-Agent 시스템 토글"""
+        self.use_multi_agent = checked
+        if checked:
+            self.status_label.setText("Multi-Agent 시스템 활성화됨")
+        else:
+            self.status_label.setText("단일 에이전트 모드")
 
     def _show_ai_settings(self):
         """AI 설정 다이얼로그"""
@@ -577,8 +645,16 @@ class MainWindow(QMainWindow):
             self,
             "NanumSlide 정보",
             "<h2>NanumSlide</h2>"
-            "<p>버전 0.1.0</p>"
+            "<p>버전 0.2.0</p>"
             "<p>AI 기반 프레젠테이션 생성기</p>"
+            "<br>"
+            "<p><b>v0.2.0 새 기능:</b></p>"
+            "<ul>"
+            "<li>Multi-Agent 시스템 (5개 전문 에이전트)</li>"
+            "<li>새로운 템플릿 시스템</li>"
+            "<li>MCP 통합 지원</li>"
+            "<li>슬래시 명령어 스킬 시스템</li>"
+            "</ul>"
             "<p>Apache 2.0 라이선스</p>",
         )
 

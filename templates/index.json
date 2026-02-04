@@ -1,0 +1,109 @@
+{
+  "version": "1.0.0",
+  "templates": [
+    {
+      "id": "pitch_deck",
+      "name": "Pitch Deck",
+      "name_ko": "투자 유치용 피치덱",
+      "category": "business",
+      "description": "스타트업 투자 유치를 위한 전문적인 피치덱 템플릿",
+      "tags": ["startup", "funding", "investor", "venture"],
+      "thumbnail": "business/pitch_deck/thumbnail.png",
+      "slides_count": 12,
+      "color_schemes": ["professional", "bold", "tech"],
+      "best_for": ["스타트업 소개", "투자 유치", "사업 계획"],
+      "popularity": 95,
+      "created_at": "2026-01-15",
+      "updated_at": "2026-02-01"
+    },
+    {
+      "id": "quarterly_report",
+      "name": "Quarterly Report",
+      "name_ko": "분기 보고서",
+      "category": "business",
+      "description": "깔끔하고 전문적인 분기 실적 보고서 템플릿",
+      "tags": ["report", "quarterly", "financial", "corporate"],
+      "thumbnail": "business/quarterly_report/thumbnail.png",
+      "slides_count": 15,
+      "color_schemes": ["corporate", "minimal"],
+      "best_for": ["실적 보고", "분기 리뷰", "경영 보고"],
+      "popularity": 88
+    },
+    {
+      "id": "lecture",
+      "name": "Lecture",
+      "name_ko": "강의 자료",
+      "category": "education",
+      "description": "교육 및 강의용 프레젠테이션 템플릿",
+      "tags": ["education", "lecture", "teaching", "school"],
+      "thumbnail": "education/lecture/thumbnail.png",
+      "slides_count": 20,
+      "color_schemes": ["nature", "ocean", "minimal"],
+      "best_for": ["강의", "수업", "교육 자료"],
+      "popularity": 82
+    },
+    {
+      "id": "product_launch",
+      "name": "Product Launch",
+      "name_ko": "제품 출시",
+      "category": "marketing",
+      "description": "제품 출시 및 마케팅 발표용 템플릿",
+      "tags": ["product", "launch", "marketing", "announcement"],
+      "thumbnail": "marketing/product_launch/thumbnail.png",
+      "slides_count": 12,
+      "color_schemes": ["bold", "vibrant", "modern"],
+      "best_for": ["제품 출시", "마케팅", "프로모션"],
+      "popularity": 78
+    },
+    {
+      "id": "clean",
+      "name": "Clean Minimal",
+      "name_ko": "클린 미니멀",
+      "category": "minimal",
+      "description": "깔끔하고 단순한 미니멀 디자인 템플릿",
+      "tags": ["minimal", "clean", "simple", "modern"],
+      "thumbnail": "minimal/clean/thumbnail.png",
+      "slides_count": 10,
+      "color_schemes": ["monochrome", "minimal", "dark"],
+      "best_for": ["다목적", "깔끔한 발표", "프로페셔널"],
+      "popularity": 90
+    }
+  ],
+  "categories": [
+    {
+      "id": "business",
+      "name": "Business",
+      "name_ko": "비즈니스",
+      "icon": "briefcase",
+      "description": "비즈니스 미팅, 보고서, 제안서용 템플릿"
+    },
+    {
+      "id": "education",
+      "name": "Education",
+      "name_ko": "교육",
+      "icon": "graduation-cap",
+      "description": "강의, 워크샵, 연구 발표용 템플릿"
+    },
+    {
+      "id": "marketing",
+      "name": "Marketing",
+      "name_ko": "마케팅",
+      "icon": "megaphone",
+      "description": "제품 출시, 캠페인, 브랜드 소개용 템플릿"
+    },
+    {
+      "id": "creative",
+      "name": "Creative",
+      "name_ko": "크리에이티브",
+      "icon": "palette",
+      "description": "포트폴리오, 스토리텔링용 창의적 템플릿"
+    },
+    {
+      "id": "minimal",
+      "name": "Minimal",
+      "name_ko": "미니멀",
+      "icon": "square",
+      "description": "깔끔하고 단순한 미니멀 디자인"
+    }
+  ]
+}

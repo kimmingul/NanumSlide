@@ -1,0 +1,116 @@
+{
+  "id": "lecture",
+  "version": "1.0.0",
+
+  "metadata": {
+    "name": "Lecture",
+    "name_ko": "강의 자료",
+    "category": "education",
+    "author": "NanumSlide Team",
+    "license": "MIT"
+  },
+
+  "design": {
+    "aspect_ratio": "16:9",
+    "base_width": 1920,
+    "base_height": 1080,
+
+    "color_schemes": {
+      "nature": {
+        "primary": "#2d6a4f",
+        "secondary": "#40916c",
+        "accent": "#52b788",
+        "background": "#ffffff",
+        "text": "#1b4332",
+        "text_light": "#74c69d"
+      },
+      "ocean": {
+        "primary": "#023e8a",
+        "secondary": "#0077b6",
+        "accent": "#00b4d8",
+        "background": "#ffffff",
+        "text": "#03045e",
+        "text_light": "#90e0ef"
+      },
+      "minimal": {
+        "primary": "#495057",
+        "secondary": "#6c757d",
+        "accent": "#adb5bd",
+        "background": "#f8f9fa",
+        "text": "#212529",
+        "text_light": "#868e96"
+      }
+    },
+
+    "typography": {
+      "heading_font": "Pretendard",
+      "body_font": "Pretendard",
+      "sizes": {
+        "title": 52,
+        "heading1": 44,
+        "heading2": 36,
+        "body": 24,
+        "caption": 18
+      },
+      "weights": {
+        "title": 700,
+        "heading": 600,
+        "body": 400
+      }
+    },
+
+    "spacing": {
+      "margin": 80,
+      "padding": 48,
+      "gap": 32
+    }
+  },
+
+  "structure": {
+    "recommended_slides": [
+      {"type": "title", "required": true, "name": "표지"},
+      {"type": "objectives", "required": true, "name": "학습 목표"},
+      {"type": "agenda", "required": false, "name": "목차"},
+      {"type": "content", "required": true, "name": "본문"},
+      {"type": "example", "required": false, "name": "예시"},
+      {"type": "exercise", "required": false, "name": "연습 문제"},
+      {"type": "discussion", "required": false, "name": "토론"},
+      {"type": "summary", "required": true, "name": "요약"},
+      {"type": "quiz", "required": false, "name": "퀴즈"},
+      {"type": "references", "required": false, "name": "참고 자료"},
+      {"type": "qna", "required": true, "name": "Q&A"}
+    ],
+    "min_slides": 10,
+    "max_slides": 40,
+    "optimal_slides": 20
+  },
+
+  "layouts": {
+    "title": {
+      "default": "centered_title",
+      "variants": ["centered_title", "left_aligned_title", "image_background_title"]
+    },
+    "objectives": {
+      "default": "numbered_list",
+      "variants": ["numbered_list", "icon_list", "checklist"]
+    },
+    "content": {
+      "default": "single_column",
+      "variants": ["single_column", "two_column", "image_left", "image_right"]
+    },
+    "example": {
+      "default": "code_block",
+      "variants": ["code_block", "image_with_caption", "step_by_step"]
+    },
+    "quiz": {
+      "default": "multiple_choice",
+      "variants": ["multiple_choice", "true_false", "fill_blank"]
+    }
+  },
+
+  "assets": {
+    "master_pptx": "master.pptx",
+    "thumbnail": "thumbnail.png",
+    "icons": ["book", "lightbulb", "question", "check", "pencil", "brain"]
+  }
+}

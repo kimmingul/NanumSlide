@@ -1,0 +1,121 @@
+{
+  "id": "product_launch",
+  "version": "1.0.0",
+
+  "metadata": {
+    "name": "Product Launch",
+    "name_ko": "제품 출시",
+    "category": "marketing",
+    "author": "NanumSlide Team",
+    "license": "MIT"
+  },
+
+  "design": {
+    "aspect_ratio": "16:9",
+    "base_width": 1920,
+    "base_height": 1080,
+
+    "color_schemes": {
+      "bold": {
+        "primary": "#e63946",
+        "secondary": "#f72585",
+        "accent": "#ff006e",
+        "background": "#1d3557",
+        "text": "#f1faee",
+        "text_light": "#a8dadc"
+      },
+      "vibrant": {
+        "primary": "#7209b7",
+        "secondary": "#560bad",
+        "accent": "#b5179e",
+        "background": "#10002b",
+        "text": "#ffffff",
+        "text_light": "#c77dff"
+      },
+      "modern": {
+        "primary": "#06d6a0",
+        "secondary": "#118ab2",
+        "accent": "#ffd166",
+        "background": "#073b4c",
+        "text": "#ffffff",
+        "text_light": "#83c5be"
+      }
+    },
+
+    "typography": {
+      "heading_font": "Pretendard",
+      "body_font": "Pretendard",
+      "sizes": {
+        "title": 60,
+        "heading1": 48,
+        "heading2": 36,
+        "body": 24,
+        "caption": 18
+      },
+      "weights": {
+        "title": 800,
+        "heading": 700,
+        "body": 400
+      }
+    },
+
+    "spacing": {
+      "margin": 60,
+      "padding": 40,
+      "gap": 24
+    }
+  },
+
+  "structure": {
+    "recommended_slides": [
+      {"type": "title", "required": true, "name": "표지"},
+      {"type": "teaser", "required": false, "name": "티저"},
+      {"type": "problem", "required": true, "name": "문제 제시"},
+      {"type": "solution", "required": true, "name": "해결책"},
+      {"type": "product_reveal", "required": true, "name": "제품 공개"},
+      {"type": "features", "required": true, "name": "주요 기능"},
+      {"type": "demo", "required": false, "name": "데모"},
+      {"type": "benefits", "required": true, "name": "고객 혜택"},
+      {"type": "pricing", "required": false, "name": "가격"},
+      {"type": "availability", "required": true, "name": "출시 일정"},
+      {"type": "cta", "required": true, "name": "CTA"}
+    ],
+    "min_slides": 8,
+    "max_slides": 15,
+    "optimal_slides": 12
+  },
+
+  "layouts": {
+    "title": {
+      "default": "image_background_title",
+      "variants": ["image_background_title", "centered_title", "split_title"]
+    },
+    "product_reveal": {
+      "default": "fullscreen_image",
+      "variants": ["fullscreen_image", "product_mockup", "video_embed"]
+    },
+    "features": {
+      "default": "three_column_features",
+      "variants": ["three_column_features", "icon_grid", "feature_carousel"]
+    },
+    "pricing": {
+      "default": "pricing_table",
+      "variants": ["pricing_table", "comparison_table", "single_price"]
+    },
+    "cta": {
+      "default": "centered_cta",
+      "variants": ["centered_cta", "split_cta", "qr_code"]
+    }
+  },
+
+  "assets": {
+    "master_pptx": "master.pptx",
+    "thumbnail": "thumbnail.png",
+    "icons": ["sparkle", "rocket", "star", "gift", "shopping-cart", "megaphone"],
+    "placeholder_images": [
+      "product_hero.png",
+      "feature_mockup.png",
+      "lifestyle_shot.png"
+    ]
+  }
+}

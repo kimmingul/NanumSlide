@@ -1,0 +1,126 @@
+{
+  "id": "pitch_deck",
+  "version": "1.2.0",
+
+  "metadata": {
+    "name": "Pitch Deck",
+    "name_ko": "투자 유치용 피치덱",
+    "category": "business",
+    "author": "NanumSlide Team",
+    "license": "MIT"
+  },
+
+  "design": {
+    "aspect_ratio": "16:9",
+    "base_width": 1920,
+    "base_height": 1080,
+
+    "color_schemes": {
+      "professional": {
+        "primary": "#1a365d",
+        "secondary": "#2c5282",
+        "accent": "#3182ce",
+        "background": "#ffffff",
+        "text": "#1a202c",
+        "text_light": "#718096"
+      },
+      "bold": {
+        "primary": "#e53e3e",
+        "secondary": "#c53030",
+        "accent": "#fc8181",
+        "background": "#1a202c",
+        "text": "#ffffff",
+        "text_light": "#a0aec0"
+      },
+      "tech": {
+        "primary": "#805ad5",
+        "secondary": "#6b46c1",
+        "accent": "#9f7aea",
+        "background": "#1a202c",
+        "text": "#ffffff",
+        "text_light": "#a0aec0"
+      }
+    },
+
+    "typography": {
+      "heading_font": "Pretendard",
+      "body_font": "Pretendard",
+      "sizes": {
+        "title": 54,
+        "heading1": 44,
+        "heading2": 36,
+        "body": 24,
+        "caption": 18
+      },
+      "weights": {
+        "title": 700,
+        "heading": 600,
+        "body": 400
+      }
+    },
+
+    "spacing": {
+      "margin": 60,
+      "padding": 40,
+      "gap": 24
+    }
+  },
+
+  "structure": {
+    "recommended_slides": [
+      {"type": "title", "required": true, "name": "표지"},
+      {"type": "problem", "required": true, "name": "문제 정의"},
+      {"type": "solution", "required": true, "name": "해결책"},
+      {"type": "product", "required": false, "name": "제품/서비스"},
+      {"type": "market", "required": true, "name": "시장 규모"},
+      {"type": "business_model", "required": true, "name": "비즈니스 모델"},
+      {"type": "traction", "required": false, "name": "성과/지표"},
+      {"type": "competition", "required": false, "name": "경쟁 분석"},
+      {"type": "team", "required": true, "name": "팀 소개"},
+      {"type": "financials", "required": false, "name": "재무 계획"},
+      {"type": "ask", "required": true, "name": "투자 요청"},
+      {"type": "contact", "required": true, "name": "연락처"}
+    ],
+    "min_slides": 8,
+    "max_slides": 15,
+    "optimal_slides": 12
+  },
+
+  "layouts": {
+    "title": {
+      "default": "centered_title",
+      "variants": ["centered_title", "left_aligned_title", "image_background_title"]
+    },
+    "problem": {
+      "default": "two_column_with_icon",
+      "variants": ["bullet_points", "single_statement", "statistics_highlight"]
+    },
+    "solution": {
+      "default": "image_left_content_right",
+      "variants": ["centered_content", "three_column_features"]
+    },
+    "market": {
+      "default": "chart_focused",
+      "variants": ["statistics_grid", "tam_sam_som"]
+    },
+    "team": {
+      "default": "team_grid",
+      "variants": ["team_list", "founder_focused"]
+    },
+    "contact": {
+      "default": "centered_cta",
+      "variants": ["contact_info", "qr_code"]
+    }
+  },
+
+  "assets": {
+    "master_pptx": "master.pptx",
+    "thumbnail": "thumbnail.png",
+    "icons": ["rocket", "chart", "team", "money", "target"],
+    "placeholder_images": [
+      "product_mockup.png",
+      "team_photo.png",
+      "chart_placeholder.png"
+    ]
+  }
+}

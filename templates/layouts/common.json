@@ -1,0 +1,302 @@
+{
+  "version": "1.0.0",
+  "layouts": {
+    "centered_title": {
+      "id": "centered_title",
+      "name": "Centered Title",
+      "name_ko": "중앙 정렬 제목",
+      "type": "title",
+      "elements": [
+        {
+          "type": "title",
+          "position": {"x": "center", "y": "40%"},
+          "size": {"width": "80%", "height": "auto"},
+          "style": {"align": "center", "font_weight": "title"}
+        },
+        {
+          "type": "subtitle",
+          "position": {"x": "center", "y": "55%"},
+          "size": {"width": "70%", "height": "auto"},
+          "style": {"align": "center", "font_weight": "body", "color": "text_light"}
+        },
+        {
+          "type": "author",
+          "position": {"x": "center", "y": "80%"},
+          "size": {"width": "50%", "height": "auto"},
+          "style": {"align": "center", "font_size": "caption"}
+        }
+      ]
+    },
+    "left_aligned_title": {
+      "id": "left_aligned_title",
+      "name": "Left Aligned Title",
+      "name_ko": "좌측 정렬 제목",
+      "type": "title",
+      "elements": [
+        {
+          "type": "title",
+          "position": {"x": "margin", "y": "40%"},
+          "size": {"width": "60%", "height": "auto"},
+          "style": {"align": "left", "font_weight": "title"}
+        },
+        {
+          "type": "subtitle",
+          "position": {"x": "margin", "y": "55%"},
+          "size": {"width": "50%", "height": "auto"},
+          "style": {"align": "left", "font_weight": "body", "color": "text_light"}
+        },
+        {
+          "type": "author",
+          "position": {"x": "margin", "y": "80%"},
+          "size": {"width": "40%", "height": "auto"},
+          "style": {"align": "left", "font_size": "caption"}
+        }
+      ]
+    },
+    "image_background_title": {
+      "id": "image_background_title",
+      "name": "Image Background Title",
+      "name_ko": "배경 이미지 제목",
+      "type": "title",
+      "elements": [
+        {
+          "type": "background_image",
+          "position": {"x": 0, "y": 0},
+          "size": {"width": "100%", "height": "100%"},
+          "style": {"overlay": "rgba(0,0,0,0.5)"}
+        },
+        {
+          "type": "title",
+          "position": {"x": "center", "y": "40%"},
+          "size": {"width": "80%", "height": "auto"},
+          "style": {"align": "center", "font_weight": "title", "color": "#ffffff"}
+        },
+        {
+          "type": "subtitle",
+          "position": {"x": "center", "y": "55%"},
+          "size": {"width": "70%", "height": "auto"},
+          "style": {"align": "center", "font_weight": "body", "color": "#ffffffcc"}
+        }
+      ]
+    },
+    "single_column": {
+      "id": "single_column",
+      "name": "Single Column",
+      "name_ko": "단일 컬럼",
+      "type": "content",
+      "elements": [
+        {
+          "type": "heading",
+          "position": {"x": "margin", "y": "margin"},
+          "size": {"width": "auto", "height": "auto"},
+          "style": {"font_size": "heading1", "font_weight": "heading"}
+        },
+        {
+          "type": "body",
+          "position": {"x": "margin", "y": "20%"},
+          "size": {"width": "calc(100% - 2*margin)", "height": "70%"},
+          "style": {"font_size": "body", "line_height": 1.6}
+        }
+      ]
+    },
+    "two_column": {
+      "id": "two_column",
+      "name": "Two Column",
+      "name_ko": "2단 레이아웃",
+      "type": "content",
+      "elements": [
+        {
+          "type": "heading",
+          "position": {"x": "margin", "y": "margin"},
+          "size": {"width": "auto", "height": "auto"},
+          "style": {"font_size": "heading1", "font_weight": "heading"}
+        },
+        {
+          "type": "left_column",
+          "position": {"x": "margin", "y": "20%"},
+          "size": {"width": "45%", "height": "70%"},
+          "style": {"font_size": "body"}
+        },
+        {
+          "type": "right_column",
+          "position": {"x": "52%", "y": "20%"},
+          "size": {"width": "45%", "height": "70%"},
+          "style": {"font_size": "body"}
+        }
+      ]
+    },
+    "bullet_points": {
+      "id": "bullet_points",
+      "name": "Bullet Points",
+      "name_ko": "불릿 포인트",
+      "type": "content",
+      "elements": [
+        {
+          "type": "heading",
+          "position": {"x": "margin", "y": "margin"},
+          "size": {"width": "auto", "height": "auto"},
+          "style": {"font_size": "heading1", "font_weight": "heading"}
+        },
+        {
+          "type": "bullet_list",
+          "position": {"x": "margin", "y": "22%"},
+          "size": {"width": "calc(100% - 2*margin)", "height": "68%"},
+          "style": {"font_size": "body", "bullet_style": "disc", "indent": 40}
+        }
+      ]
+    },
+    "image_left_content_right": {
+      "id": "image_left_content_right",
+      "name": "Image Left, Content Right",
+      "name_ko": "좌측 이미지, 우측 내용",
+      "type": "content",
+      "elements": [
+        {
+          "type": "image",
+          "position": {"x": "margin", "y": "margin"},
+          "size": {"width": "45%", "height": "calc(100% - 2*margin)"},
+          "style": {"object_fit": "cover", "border_radius": 8}
+        },
+        {
+          "type": "heading",
+          "position": {"x": "52%", "y": "margin"},
+          "size": {"width": "45%", "height": "auto"},
+          "style": {"font_size": "heading1", "font_weight": "heading"}
+        },
+        {
+          "type": "body",
+          "position": {"x": "52%", "y": "22%"},
+          "size": {"width": "45%", "height": "68%"},
+          "style": {"font_size": "body", "line_height": 1.6}
+        }
+      ]
+    },
+    "chart_focused": {
+      "id": "chart_focused",
+      "name": "Chart Focused",
+      "name_ko": "차트 중심",
+      "type": "data",
+      "elements": [
+        {
+          "type": "heading",
+          "position": {"x": "margin", "y": "margin"},
+          "size": {"width": "auto", "height": "auto"},
+          "style": {"font_size": "heading1", "font_weight": "heading"}
+        },
+        {
+          "type": "chart",
+          "position": {"x": "center", "y": "center"},
+          "size": {"width": "80%", "height": "65%"},
+          "style": {"chart_type": "auto"}
+        },
+        {
+          "type": "caption",
+          "position": {"x": "center", "y": "90%"},
+          "size": {"width": "60%", "height": "auto"},
+          "style": {"font_size": "caption", "align": "center", "color": "text_light"}
+        }
+      ]
+    },
+    "centered_cta": {
+      "id": "centered_cta",
+      "name": "Centered CTA",
+      "name_ko": "중앙 CTA",
+      "type": "conclusion",
+      "elements": [
+        {
+          "type": "heading",
+          "position": {"x": "center", "y": "35%"},
+          "size": {"width": "70%", "height": "auto"},
+          "style": {"font_size": "title", "font_weight": "title", "align": "center"}
+        },
+        {
+          "type": "subheading",
+          "position": {"x": "center", "y": "50%"},
+          "size": {"width": "60%", "height": "auto"},
+          "style": {"font_size": "heading2", "align": "center", "color": "text_light"}
+        },
+        {
+          "type": "cta_button",
+          "position": {"x": "center", "y": "70%"},
+          "size": {"width": "auto", "height": "auto"},
+          "style": {"background": "accent", "color": "#ffffff", "padding": "16px 48px", "border_radius": 8}
+        }
+      ]
+    },
+    "team_grid": {
+      "id": "team_grid",
+      "name": "Team Grid",
+      "name_ko": "팀 그리드",
+      "type": "team",
+      "elements": [
+        {
+          "type": "heading",
+          "position": {"x": "margin", "y": "margin"},
+          "size": {"width": "auto", "height": "auto"},
+          "style": {"font_size": "heading1", "font_weight": "heading"}
+        },
+        {
+          "type": "team_members",
+          "position": {"x": "margin", "y": "22%"},
+          "size": {"width": "calc(100% - 2*margin)", "height": "70%"},
+          "style": {"layout": "grid", "columns": 4, "gap": 24},
+          "member_template": {
+            "photo": {"size": 120, "border_radius": "50%"},
+            "name": {"font_size": "body", "font_weight": "heading"},
+            "title": {"font_size": "caption", "color": "text_light"}
+          }
+        }
+      ]
+    },
+    "statistics_grid": {
+      "id": "statistics_grid",
+      "name": "Statistics Grid",
+      "name_ko": "통계 그리드",
+      "type": "data",
+      "elements": [
+        {
+          "type": "heading",
+          "position": {"x": "margin", "y": "margin"},
+          "size": {"width": "auto", "height": "auto"},
+          "style": {"font_size": "heading1", "font_weight": "heading"}
+        },
+        {
+          "type": "stat_cards",
+          "position": {"x": "margin", "y": "25%"},
+          "size": {"width": "calc(100% - 2*margin)", "height": "60%"},
+          "style": {"layout": "grid", "columns": 4, "gap": 32},
+          "card_template": {
+            "value": {"font_size": 48, "font_weight": "title", "color": "primary"},
+            "label": {"font_size": "body", "color": "text"},
+            "change": {"font_size": "caption", "color": "accent"}
+          }
+        }
+      ]
+    },
+    "three_column_features": {
+      "id": "three_column_features",
+      "name": "Three Column Features",
+      "name_ko": "3단 기능 소개",
+      "type": "features",
+      "elements": [
+        {
+          "type": "heading",
+          "position": {"x": "center", "y": "margin"},
+          "size": {"width": "auto", "height": "auto"},
+          "style": {"font_size": "heading1", "font_weight": "heading", "align": "center"}
+        },
+        {
+          "type": "feature_columns",
+          "position": {"x": "margin", "y": "22%"},
+          "size": {"width": "calc(100% - 2*margin)", "height": "70%"},
+          "style": {"layout": "flex", "columns": 3, "gap": 48},
+          "column_template": {
+            "icon": {"size": 64, "color": "primary"},
+            "title": {"font_size": "heading2", "font_weight": "heading", "margin_top": 24},
+            "description": {"font_size": "body", "color": "text_light", "margin_top": 16}
+          }
+        }
+      ]
+    }
+  }
+}

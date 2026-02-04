@@ -1,12 +1,12 @@
 [project]
 name = "nanumslide"
-version = "0.1.0"
-description = "AI 기반 프레젠테이션 생성기 - Windows 데스크톱 애플리케이션"
+version = "0.2.0"
+description = "AI 기반 프레젠테이션 생성기 - Multi-Agent 시스템 + MCP 연동"
 readme = "README.md"
 requires-python = ">=3.12"
 license = { text = "Apache-2.0" }
 authors = [{ name = "NanumSlide Team" }]
-keywords = ["presentation", "ai", "pptx", "desktop"]
+keywords = ["presentation", "ai", "pptx", "desktop", "multi-agent", "mcp"]
 
 dependencies = [
     # GUI
@@ -33,14 +33,35 @@ dependencies = [
     "pypdf>=3.0.0",            # PDF 읽기
     "pymupdf>=1.24.0",         # PDF 텍스트 추출 (fitz)
     "python-docx>=1.0.0",      # DOCX 읽기
+
+    # Multi-Agent 및 비동기 처리
+    "structlog>=24.0.0",       # 구조화된 로깅
+    "tenacity>=8.2.0",         # 재시도 로직
+    "aiofiles>=23.0.0",        # 비동기 파일 I/O
+    "rich>=13.0.0",            # 터미널 UI (디버깅용)
+    "aiohttp>=3.9.0",          # 비동기 HTTP 클라이언트
+
+    # 차트 생성
+    "matplotlib>=3.8.0",       # 차트 생성
+    "numpy>=1.26.0",           # 수치 연산
+
+    # MCP (Model Context Protocol)
+    "mcp>=1.0.0",              # MCP SDK
+    "duckduckgo-search>=6.0.0", # DuckDuckGo 검색 (무료)
 ]
 
 [project.optional-dependencies]
+pdf = [
+    "weasyprint>=60.0",        # HTML→PDF
+]
 dev = [
     "pytest>=8.0.0",
     "pytest-qt>=4.2.0",
+    "pytest-asyncio>=0.23.0",
+    "pytest-cov>=4.1.0",
     "pyinstaller>=6.0.0",
     "ruff>=0.3.0",
+    "mypy>=1.8.0",
 ]
 
 [project.scripts]

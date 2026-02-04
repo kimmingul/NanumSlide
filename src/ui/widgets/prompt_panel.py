@@ -115,18 +115,55 @@ class PromptPanel(QWidget):
 
         scroll_layout.addWidget(options_group)
 
-        # === 테마/템플릿 설정 ===
-        theme_group = QGroupBox("테마")
+        # === 템플릿 설정 (새 시스템) ===
+        template_group = QGroupBox("템플릿")
+        template_group_layout = QVBoxLayout(template_group)
+
+        # 템플릿 선택
+        template_select_layout = QHBoxLayout()
+        template_select_layout.addWidget(QLabel("템플릿:"))
+        self.new_template_combo = QComboBox()
+        self.new_template_combo.addItems([
+            "자동 선택",
+            "Pitch Deck (투자 유치)",
+            "Quarterly Report (보고서)",
+            "Lecture (강의)",
+            "Product Launch (출시)",
+            "Clean Minimal (미니멀)"
+        ])
+        self.new_template_combo.currentTextChanged.connect(self._on_new_template_changed)
+        template_select_layout.addWidget(self.new_template_combo)
+        template_group_layout.addLayout(template_select_layout)
+
+        # 템플릿 미리보기
+        self.template_preview_frame = QFrame()
+        self.template_preview_frame.setFixedHeight(60)
+        self.template_preview_frame.setStyleSheet(
+            "background: qlineargradient(x1:0, y1:0, x2:1, y2:1, "
+            "stop:0 #4a5568, stop:1 #718096); border-radius: 6px;"
+        )
+        template_group_layout.addWidget(self.template_preview_frame)
+
+        # 템플릿 정보
+        self.template_info_label = QLabel("AI가 주제에 맞는 템플릿을 선택합니다")
+        self.template_info_label.setStyleSheet("font-size: 10px; color: gray;")
+        self.template_info_label.setWordWrap(True)
+        template_group_layout.addWidget(self.template_info_label)
+
+        scroll_layout.addWidget(template_group)
+
+        # === 테마/색상 설정 ===
+        theme_group = QGroupBox("색상 테마")
         theme_layout = QVBoxLayout(theme_group)
 
         # 테마 선택
-        template_layout = QHBoxLayout()
-        template_layout.addWidget(QLabel("스타일:"))
+        color_layout = QHBoxLayout()
+        color_layout.addWidget(QLabel("스타일:"))
         self.template_combo = QComboBox()
         self.template_combo.addItems(get_theme_names())
         self.template_combo.currentTextChanged.connect(self._on_theme_changed)
-        template_layout.addWidget(self.template_combo)
-        theme_layout.addLayout(template_layout)
+        color_layout.addWidget(self.template_combo)
+        theme_layout.addLayout(color_layout)
 
         # 테마 미리보기
         self.theme_preview = QFrame()
@@ -218,6 +255,43 @@ class PromptPanel(QWidget):
 
         layout.addLayout(button_layout)
 
+    def _on_new_template_changed(self, template_name: str):
+        """새 템플릿 시스템 - 템플릿 변경 처리"""
+        templates_info = {
+            "자동 선택": {
+                "gradient": "#4a5568, #718096",
+                "info": "AI가 주제에 맞는 템플릿을 선택합니다"
+            },
+            "Pitch Deck (투자 유치)": {
+                "gradient": "#1a365d, #2c5282",
+                "info": "투자 유치용 | 12장 권장"
+            },
+            "Quarterly Report (보고서)": {
+                "gradient": "#0f4c81, #1e6eb8",
+                "info": "비즈니스 보고서 | 15장 권장"
+            },
+            "Lecture (강의)": {
+                "gradient": "#2d6a4f, #40916c",
+                "info": "교육/강의용 | 20장 권장"
+            },
+            "Product Launch (출시)": {
+                "gradient": "#e63946, #f72585",
+                "info": "제품 출시/마케팅 | 12장 권장"
+            },
+            "Clean Minimal (미니멀)": {
+                "gradient": "#374151, #4b5563",
+                "info": "미니멀 디자인 | 10장 권장"
+            }
+        }
+
+        info = templates_info.get(template_name, templates_info["자동 선택"])
+        colors = info['gradient'].split(', ')
+        self.template_preview_frame.setStyleSheet(
+            f"background: qlineargradient(x1:0, y1:0, x2:1, y2:1, "
+            f"stop:0 {colors[0]}, stop:1 {colors[1]}); border-radius: 6px;"
+        )
+        self.template_info_label.setText(info["info"])
+
     def _on_theme_changed(self, theme_name: str):
         """테마 변경 처리"""
         theme = get_theme_by_display_name(theme_name)
@@ -303,11 +377,23 @@ class PromptPanel(QWidget):
 
     def get_options(self) -> dict:
         """현재 설정된 옵션 반환"""
+        # 템플릿 ID 매핑
+        template_map = {
+            "자동 선택": "auto",
+            "Pitch Deck (투자 유치)": "pitch_deck",
+            "Quarterly Report (보고서)": "quarterly_report",
+            "Lecture (강의)": "lecture",
+            "Product Launch (출시)": "product_launch",
+            "Clean Minimal (미니멀)": "clean",
+        }
+        selected_template = self.new_template_combo.currentText()
+
         return {
             "slide_count": self.slide_count_spin.value(),
             "model": self.model_combo.currentText(),
             "language": self.lang_combo.currentText(),
-            "template": self.template_combo.currentText(),
+            "template": self.template_combo.currentText(),  # 색상 테마
+            "template_id": template_map.get(selected_template, "auto"),  # 새 템플릿 ID
             "reference_content": self.get_uploaded_files_content(),
         }
 
